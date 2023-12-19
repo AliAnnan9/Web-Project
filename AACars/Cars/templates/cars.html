@@ -1,0 +1,399 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section id="header" class="jumbotron text-center">
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <div class="content">
+        <div class="content__container">
+          <p class="content__container__text">
+            WoW
+          </p>
+
+          <ul class="content__container__list">
+            <li class="content__container__list__item">Supra !</li>
+            <li class="content__container__list__item">GTR !</li>
+            <li class="content__container__list__item">IS-F !</li>
+            <li class="content__container__list__item">Miata !</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="lead">Welcome to our showroom, where you'll discover an <br>
+    exquisite collection of premium automobiles that redefine luxury and elegance</p>
+</section>
+
+<div class="container">
+
+  <div class="row">
+
+    {% for supra in object_list %}
+
+    <div class="col-lg-4 mb-4">
+
+      <div class="card">
+        <img src="{{ supra.image.url }}" alt="" class="card-img-top fixed-image">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h3 class="card-title">{{ supra.Manufactur }} {{ supra.Name }} {{ supra.Year }}</h3>
+            <h5 class="text-end">BD {{ supra.Price }}</h5>
+          </div>
+          <h5>{{ supra.Milage }}</h5>
+          <button class="learn-more">
+            <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+            </span>
+            <span class="button-text"><a href="{% url 'Car-detail' supra.pk %}">Learn More</a></span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .card {
+    margin: 15px 40px 15px;
+    /* Add margin on the sides and bottom of the cards */
+    background-color: #131313;
+    border: none;
+  }
+
+  .fixed-image {
+    width: 100%;
+    height: 200px;
+    /* Adjust the height as per your requirement */
+    object-fit: cover;
+  }
+
+  /*
+  .card:hover img {
+    transform: scale(1.1);
+  }
+  */
+
+  .container {
+    background-color: #131313;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .row {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  .row.row-cols-2.row-cols-md-3.g-6 {
+    background-color: #131313;
+  }
+
+  .card-body {
+    color: aliceblue;
+  }
+
+  a {
+    text-decoration: none;
+    color: rgb(112, 112, 112);
+    font-size: 10px;
+  }
+
+  .learn-more a {
+    font-size: 12px;
+    margin-left: 1em;
+  }
+
+  .learn-more a:hover {
+    text-decoration: none;
+  }
+
+  section {
+    background-image: url(../static/dealership.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .lead {
+    font-size: 18px;
+    color: #282634;
+  }
+
+  #header h1 {
+    color: white;
+    position: relative;
+    -webkit-text-stroke: 2px gray;
+    text-transform: uppercase;
+  }
+
+  button {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+  }
+
+  button.learn-more {
+    width: 12rem;
+    height: auto;
+  }
+
+  button.learn-more .circle {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: relative;
+    display: block;
+    margin: 0;
+    width: 3rem;
+    height: 3rem;
+    background: #282936;
+    border-radius: 1.625rem;
+  }
+
+  button.learn-more .circle .icon {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: #fff;
+  }
+
+  button.learn-more .circle .icon.arrow {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    left: 0.625rem;
+    width: 1.125rem;
+    height: 0.125rem;
+    background: none;
+  }
+
+  button.learn-more .circle .icon.arrow::before {
+    position: absolute;
+    content: "";
+    top: -0.29rem;
+    right: 0.0625rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-top: 0.125rem solid #fff;
+    border-right: 0.125rem solid #fff;
+    transform: rotate(45deg);
+  }
+
+  button.learn-more .button-text {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.75rem 0;
+    margin: 0 0 0 1.85rem;
+    color: #282936;
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  button:hover .circle {
+    width: 100%;
+  }
+
+  button:hover .circle .icon.arrow {
+    background: #fff;
+    transform: translate(1rem, 0);
+  }
+
+  button:hover .button-text {
+    color: #fff;
+  }
+
+
+
+  .button {
+    margin: 0;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* button styling */
+  .button {
+    --border-right: 6px;
+    --text-stroke-color: black;
+    --animation-color: gray;
+    --fs-size: 2em;
+    letter-spacing: 3px;
+    text-decoration: none;
+    font-size: var(--fs-size);
+    font-family: "Arial";
+    position: relative;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-stroke-color);
+  }
+
+  /* this is the text, when you hover on button */
+  .hover-text {
+    position: absolute;
+    box-sizing: border-box;
+    content: attr(data-text);
+    color: var(--animation-color);
+    width: 0%;
+    inset: 0;
+    border-right: var(--border-right) solid var(--animation-color);
+    overflow: hidden;
+    transition: 0.5s;
+    -webkit-text-stroke: 1px var(--animation-color);
+  }
+
+  /* hover */
+  .button:hover .hover-text {
+    width: 100%;
+    filter: drop-shadow(0 0 23px var(--animation-color))
+  }
+
+  .button.tit {
+    margin-bottom: 2em;
+  }
+
+  .button.tit span {
+    font-size: 35px;
+  }
+
+
+  /*The cars title*/
+  .content {
+    display: block;
+    position: sticky;
+    overflow: hidden;
+    font-family: 'Lato', sans-serif;
+    font-size: 35px;
+    line-height: 40px;
+    color: #ecf0f1;
+  }
+
+  .content__container p{
+    font-family: 'Lato', sans-serif;
+    font-size: 35px;
+    line-height: 40px;
+    color: #ecf0f1;
+  }
+  .content__container {
+    font-weight: 600;
+    overflow: hidden;
+    height: 40px;
+    padding: 0 40px;
+  }
+
+  .content__container:before {
+    content: '[';
+    left: 0;
+  }
+
+  .content__container:after {
+    content: ']';
+    position: absolute;
+    right: 0;
+  }
+
+  .content__container:after,
+  .content__container:before {
+    position: absolute;
+    top: -2px;
+    color: #787586;
+    font-size: 42px;
+    line-height: 40px;
+    -webkit-animation-name: opacity;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: opacity;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+
+  .content__container__text {
+    display: inline;
+    float: left;
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    font-size: 35px;
+    line-height: 40px;
+    color: #ecf0f1;
+  }
+
+  .content__container__list {
+    margin-top: 0;
+    padding-left: 110px;
+    text-align: left;
+    list-style: none;
+    -webkit-animation-name: change;
+    -webkit-animation-duration: 10s;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: change;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+  }
+
+  .content__container__list__item {
+    line-height: 40px;
+    margin: 0;
+  }
+
+  @keyframes opacity {
+
+    0%,
+    100% {
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes change {
+
+    0%,
+    12.66%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    16.66%,
+    29.32% {
+      transform: translate3d(0, -25%, 0);
+    }
+
+    33.32%,
+    45.98% {
+      transform: translate3d(0, -50%, 0);
+    }
+
+    49.98%,
+    62.64% {
+      transform: translate3d(0, -75%, 0);
+    }
+
+    66.64%,
+    79.3% {
+      transform: translate3d(0, -50%, 0);
+    }
+
+    83.3%,
+    95.96% {
+      transform: translate3d(0, -25%, 0);
+    }
+  }
+</style>
+{% endblock %}

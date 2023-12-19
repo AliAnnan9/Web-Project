@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="vh-100" style="background-color: #1a1a1a;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card" style="border-radius: 1rem;">
+                    <div class="row g-0">
+                        <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <img src="{% static 'Logo.png' %}" alt="login form" class="img-fluid"
+                                style="border-radius: 1rem 0 0 1rem;" />
+                        </div>
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+                                <div class="d-flex align-items-center mb-3 pb-1">
+                                    <span class="h1 fw-bold mb-0">Your Appointment have been Booked successfully.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .col-md-6.col-lg-5.d-none.d-md-block {
+        background: black;
+    }
+
+    .col-md-6.col-lg-7.d-flex.align-items-center {
+        background: gray;
+    }
+
+    form p {
+        font-size: 18px;
+    }
+
+    form a {
+        text-decoration: none;
+        color: #000;
+        font-size: 12px;
+    }
+
+    @keyframes blinkCursor {
+        50% {
+            border-right-color: transparent;
+        }
+    }
+
+    @keyframes typeAndDelete {
+
+        0%,
+        10% {
+            width: 0;
+        }
+
+        45%,
+        55% {
+            width: 6.2em;
+        }
+
+        /* adjust width based on content */
+        90%,
+        100% {
+            width: 0;
+        }
+    }
+
+    /*multi text*/
+    
+</style>
+{% endblock %}

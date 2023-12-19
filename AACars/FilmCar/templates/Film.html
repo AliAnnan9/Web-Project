@@ -1,0 +1,324 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div id="booking" class="section">
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-md-push-5">
+                    <div class="booking-cta">
+                        <h1>Book an Appointment</h1>
+                        <p>Welcome to our booking page! Here, you can reserve a date for a filming session, where we
+                            will bring our cars to your preferred location for the shoot.
+                        </p>
+                        <h2 id="msg"></h2>
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-pull-7">
+                    <div class="booking-form">
+                        <form method="POST" id="booking-form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <p class="form-label top">{{ cars.Manufactur }} {{ cars.Name }} {{ cars.Year }}</p><br>
+                                <p class="form-label top"><span>Customer Name: </span></p>
+                                <input class="form-control" type="text" placeholder="Ali Annan" name="Customer"
+                                    id="CustName">
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Date</span>
+                                        <input class="form-control" type="date" required name="Date" id="Date">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Time</span>
+                                        <input class="form-control" type="time" required name="Time" id="Time">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Preferred Location</span>
+                                        <input class="form-control" type="text" placeholder="Bahrain Bay"
+                                            name="Location" id="Loc">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Period</span>
+                                        <input class="form-control" type="text" placeholder="5 Days" name="Period"
+                                            id="per">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="button type1" onclick="validateForm(event)">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function validateForm(event) {
+        event.preventDefault(); // Prevent the form from submitting automatically
+
+        // Perform field validation
+        const customerName = document.getElementById('CustName').value;
+        const date = document.getElementById('Date').value;
+        const time = document.getElementById('Time').value;
+        const location = document.getElementById('Loc').value;
+        const period = document.getElementById('per').value;
+
+        if (customerName === '') {
+            document.getElementById("msg").innerHTML=("*Please Enter The customer Name")
+            return;
+        }
+
+        if (date === '') {
+            document.getElementById("msg").innerHTML=("*Please Enter a valid Date")
+            return;
+        }
+
+        if (time === '') {
+            document.getElementById("msg").innerHTML=("*Please Enter a vaild Time")
+            return;
+        }
+
+        if (location === '') {
+            document.getElementById("msg").innerHTML=("*Please Enter The preferd Location")
+            return;
+        }
+
+        if (period === '') {
+            document.getElementById("msg").innerHTML=("*Please Enter a period")
+            return;
+        }
+
+        // If all fields are valid, submit the form
+        document.getElementById('booking-form').submit();
+    }
+</script>
+<style>
+    #msg{
+        color: red;
+    }
+    .section {
+        position: relative;
+        height: 100vh;
+    }
+
+    .section .section-center {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+    #booking {
+        font-family: 'Montserrat', sans-serif;
+        font-size: larger;
+        background-image: url('https://i.imgur.com/ZaRYfYW.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+
+    #booking::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background: #1a1a1a;
+    }
+
+    .booking-form {
+        background-color: #fff;
+        padding: 50px 20px;
+        -webkit-box-shadow: 0px 5px 20px -5px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 5px 20px -5px rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+    }
+
+    .booking-form .form-group {
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+    .booking-form .form-control {
+        background-color: #ebecee;
+        border-radius: 4px;
+        border: none;
+        height: 40px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        color: #3e485c;
+        font-size: 14px;
+    }
+
+    .booking-form .form-control::-webkit-input-placeholder {
+        color: rgba(62, 72, 92, 0.3);
+    }
+
+    .booking-form .form-control:-ms-input-placeholder {
+        color: rgba(62, 72, 92, 0.3);
+    }
+
+    .booking-form .form-control::placeholder {
+        color: rgba(62, 72, 92, 0.3);
+    }
+
+    .booking-form input[type="date"].form-control:invalid {
+        color: rgba(62, 72, 92, 0.3);
+    }
+
+    .booking-form select.form-control {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+    .booking-form select.form-control+.select-arrow {
+        position: absolute;
+        right: 0px;
+        bottom: 4px;
+        width: 32px;
+        line-height: 32px;
+        height: 32px;
+        text-align: center;
+        pointer-events: none;
+        color: rgba(62, 72, 92, 0.3);
+        font-size: 14px;
+    }
+
+    .booking-form select.form-control+.select-arrow:after {
+        content: '\279C';
+        display: block;
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+
+    .booking-form .form-label {
+        display: inline-block;
+        color: #3e485c;
+        font-weight: 700;
+        margin-bottom: 6px;
+        margin-left: 7px;
+    }
+
+    .booking-form .submit-btn {
+        display: inline-block;
+        color: #fff;
+        background-color: #1a1a1a;
+        font-weight: 700;
+        padding: 14px 30px;
+        border-radius: 4px;
+        border: none;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+    }
+
+    .booking-form .submit-btn:hover,
+    .booking-form .submit-btn:focus {
+        opacity: 0.9;
+    }
+
+    .booking-cta {
+        margin-top: 80px;
+        margin-bottom: 30px;
+    }
+
+    .booking-cta h1 {
+        font-size: 52px;
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: 700;
+    }
+
+    .booking-cta p {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .form-group h5 {
+        font-size: 18px;
+        margin-left: 15px;
+    }
+
+    .form-group p {
+        font-size: 19px;
+    }
+
+    .form-label.top span {
+        font-weight: bold;
+        font-size: 25px;
+    }
+
+    /*Buttons*/
+
+    .button {
+        height: 50px;
+        width: 180px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .button:hover {
+        box-shadow: .5px .5px 180px #252525;
+    }
+
+    .type1::after {
+        content: "Film {{ cars.Name }}";
+        height: 50px;
+        width: 180px;
+        background-color: #fff;
+        color: #131313;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        transform: translateY(50px);
+        font-size: 1.2rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .type1::before {
+        content: "Book an Appointment";
+        height: 50px;
+        width: 180px;
+        background-color: #1a1a1a;
+        color: #fff;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        transform: translateY(0px) scale(1.2);
+        font-size: 1.2rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .type1:hover::after {
+        transform: translateY(0) scale(1.2);
+    }
+
+    .type1:hover::before {
+        transform: translateY(-50px) scale(0) rotate(120deg);
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<section class="py-3 py-md-5 py-xl-8">
+    <div class="container">
+      <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
+        <div class="col-12 col-lg-6 col-xl-5">
+          <img class="img-fluid rounded" loading="lazy" src="{% static 'SupraB(5).jpg' %}" alt="">
+        </div>
+        <div class="col-12 col-lg-6 col-xl-7">
+          <div class="row justify-content-xl-center">
+            <div class="col-12 col-xl-11">
+              <h2 class="h1 mb-3">Who Are We?</h2>
+              <p class="lead fs-4 text-secondary mb-3">At our dealership, we specialize in offering unique and rare cars, providing customers with exclusive and hard-to-find models that stand out from the ordinary. Our curated selection showcases limited-edition vehicles, vintage classics, and collectible automobiles, ensuring an exceptional and distinctive ownership experience for car enthusiasts and collectors alike.</p>
+              <div class="row gy-4 gy-md-0 gx-xxl-5X">
+                <div class="col-12 col-md-6">
+                  <div class="d-flex">
+                    <div class="me-4 text-primary">
+                      <img src="{% static 'phone-call.png' %}" alt="">
+                    </div>
+                    <div>
+                      <h4 class="mb-3">Phone Number</h4>
+                      <h2>+973 33344211</h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="d-flex">
+                    <div class="me-4 text-primary">
+                      <img src="{% static 'email.png' %}" alt="">
+                    </div>
+                    <div>
+                      <h4 class="mb-3">Email Address</h4>
+                      <h2>201901558@student.polytechnic.bh</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.3/components/abouts/about-1/assets/css/about-1.css" />
+
+  <style>
+    .row.gy-3.gy-md-4.gy-lg-0.align-items-lg-center{
+        background: whitesmoke;
+    }
+    .img-fluid.rounded{
+        margin-left: -10px;
+    }
+    .d-flex{
+        margin-top: 2em;
+    }
+    .me-4.text-primary img{
+        height: 30px;
+        width: 30px;
+    }
+    .py-3.py-md-5.py-xl-8{
+        height: 80vh;
+    }
+  </style>
+
+{% endblock %}

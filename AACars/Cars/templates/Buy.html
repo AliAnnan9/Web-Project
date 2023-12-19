@@ -1,0 +1,603 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="dark">
+    <div class="container py-4">
+        <h1 class="h1 text-center" id="pageHeaderTitle">{{ car.Manufactur }} {{ car.Name }} {{ car.Year }}</h1>
+
+        <article class="postcard dark blue">
+            <a class="postcard__img_link" href="#">
+                <img class="postcard__img" src="{{ car.image.url }}" alt="Image Title" />
+            </a>
+            <div class="postcard__text">
+                <div class="postcard__preview-txt">
+                    <h3>one of our Agents will contact to book an appointment so you could
+                        inspect the vehicles physically and we will processed the payment</h3>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col d-flex justify-content-center">
+
+                            <div id="form-ui">
+                                <form id="form">
+                                    <div id="form-body">
+                                        <div id="welcome-lines">
+                                            <div id="welcome-line-1">Request Detailed Information</div>
+                                        </div>
+                                        <div id="input-area">
+                                            <div class="form-inp">
+                                                <input id="Name" placeholder="Customer Name" type="text">
+                                            </div>
+                                            <div class="form-inp">
+                                                <input id="Email" placeholder="Customer Email" type="text">
+                                            </div>
+                                            <div class="form-inp add">
+                                                <input id="Phone" placeholder="Customer Phone Number" type="text">
+                                            </div>
+                                        </div>
+                                        <div id="submit-button-cvr">
+                                            <input type="button" value="submit" onclick="validate()" id="submit-button">
+                                        </div>
+                                    </div>
+                                </form>
+                                <h3 id="massege"></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<script>
+    function validate(){
+	//read and save the input inside the variables
+	Name = document.getElementById("Name").value;
+	email = document.getElementById("Email").value;
+	phone =  document.getElementById("Phone").value;
+		
+		//validations against empty inputs
+		if (Name == ""){
+			document.getElementById("massege").innerHTML=("*Please enter your Name");
+		}else if(email == ""){
+			document.getElementById("massege").innerHTML=("*Please enter your Email Address");
+		}else if(phone == ""){
+			document.getElementById("massege").innerHTML=("*Please enter your Phone Number");
+		}else{
+			document.getElementById("massege").innerHTML=("Our Agents will contact you as soon as possible");
+			
+			
+		}
+	
+		}
+</script>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+
+    /* Colors */
+    :root {
+        --main-green: #79dd09;
+        --main-green-rgb-015: rgba(121, 221, 9, 0.1);
+        --main-yellow: #bdbb49;
+        --main-yellow-rgb-015: rgba(189, 187, 73, 0.1);
+        --main-red: #bd150b;
+        --main-red-rgb-015: rgba(189, 21, 11, 0.1);
+        --main-blue: #787586;
+        --main-blue-rgb-015: rgba(0, 118, 189, 0.1);
+    }
+
+    .dark {
+        background: #1a1a1a;
+    }
+
+
+    a,
+    a:hover {
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+    }
+
+    #pageHeaderTitle {
+        margin: 2rem 0;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 2.5rem;
+    }
+
+    /* Cards */
+    .postcard {
+        flex-wrap: wrap;
+        display: flex;
+
+        box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+        border-radius: 10px;
+        margin: 0 0 2rem 0;
+        overflow: hidden;
+        position: relative;
+        color: #ffffff;
+
+        &.dark {
+            background-color: #1a1a1a;
+        }
+
+        .t-dark {
+            color: #1a1a1a;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        h1,
+        .h1 {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .small {
+            font-size: 80%;
+        }
+
+        .postcard__title {
+            font-size: 1.95rem;
+        }
+
+        .postcard__img {
+            max-height: 180px;
+            width: 100%;
+            object-fit: cover;
+            position: relative;
+        }
+
+        .postcard__img_link {
+            display: contents;
+        }
+
+        .postcard__bar {
+            width: 50px;
+            height: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: #1a1a1a;
+            transition: width 0.2s ease;
+        }
+
+        .postcard__text {
+            padding: 1.5rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .postcard__preview-txt {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: justify;
+            height: 100%;
+            font-size: 15px;
+        }
+
+        .postcard__tagbox {
+            display: flex;
+            flex-flow: row wrap;
+            font-size: 14px;
+            margin: 20px 0 0 0;
+            padding: 0;
+            justify-content: center;
+
+            .tag__item {
+                display: inline-block;
+                background: rgba(83, 83, 83, 0.4);
+                border-radius: 3px;
+                padding: 2.5px 10px;
+                margin: 0 5px 5px 0;
+                cursor: default;
+                user-select: none;
+                transition: background-color 0.3s;
+
+                &:hover {
+                    background: rgba(83, 83, 83, 0.8);
+                }
+            }
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: linear-gradient(-70deg, #424242, transparent 50%);
+            opacity: 1;
+            border-radius: 10px;
+        }
+
+        &:hover .postcard__bar {
+            width: 100px;
+        }
+    }
+
+    @media screen and (min-width: 769px) {
+        .postcard {
+            flex-wrap: inherit;
+
+            .postcard__title {
+                font-size: 2.5rem;
+            }
+
+            .postcard__tagbox {
+                justify-content: start;
+            }
+
+            .postcard__img {
+                max-width: 400px;
+                max-height: 100%;
+                transition: transform 0.3s ease;
+            }
+
+            .postcard__text {
+                padding: 3rem;
+                width: 100%;
+            }
+
+            .media.postcard__text:before {
+                content: "";
+                position: absolute;
+                display: block;
+                background: #1a1a1a;
+                top: -20%;
+                height: 130%;
+                width: 55px;
+            }
+
+            &:hover .postcard__img {
+                transform: scale(1.1);
+            }
+
+            &:nth-child(2n+1) {
+                flex-direction: row;
+            }
+
+            &:nth-child(2n+0) {
+                flex-direction: row-reverse;
+            }
+
+            &:nth-child(2n+1) .postcard__text::before {
+                left: -12px !important;
+                transform: rotate(4deg);
+            }
+
+            &:nth-child(2n+0) .postcard__text::before {
+                right: -12px !important;
+                transform: rotate(-4deg);
+            }
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .postcard__text {
+            padding: 2rem 3.5rem;
+        }
+
+        .postcard__text:before {
+            content: "";
+            position: absolute;
+            display: block;
+
+            top: -20%;
+            height: 130%;
+            width: 55px;
+        }
+
+        .postcard.dark {
+            .postcard__text:before {
+                background: #1a1a1a;
+            }
+        }
+    }
+
+    /* COLORS */
+    .postcard .postcard__tagbox .green.play:hover {
+        background: var(--main-green);
+        color: black;
+    }
+
+    .green .postcard__title:hover {
+        color: var(--main-green);
+    }
+
+    .green .postcard__bar {
+        background-color: var(--main-green);
+    }
+
+    .green::before {
+        background-image: linear-gradient(-30deg,
+                var(--main-green-rgb-015),
+                transparent 50%);
+    }
+
+    .green:nth-child(2n)::before {
+        background-image: linear-gradient(30deg, var(--main-green-rgb-015), transparent 50%);
+    }
+
+    .postcard .postcard__tagbox .blue.play:hover {
+        background: var(--main-blue);
+    }
+
+    .blue .postcard__title:hover {
+        color: var(--main-blue);
+    }
+
+    .blue .postcard__bar {
+        background-color: var(--main-blue);
+    }
+
+    .blue::before {
+        background-image: linear-gradient(-30deg, var(--main-blue-rgb-015), transparent 50%);
+    }
+
+    .blue:nth-child(2n)::before {
+        background-image: linear-gradient(30deg, var(--main-blue-rgb-015), transparent 50%);
+    }
+
+    .postcard .postcard__tagbox .red.play:hover {
+        background: var(--main-red);
+    }
+
+    .red .postcard__title:hover {
+        color: var(--main-red);
+    }
+
+    .red .postcard__bar {
+        background-color: var(--main-red);
+    }
+
+    .red::before {
+        background-image: linear-gradient(-30deg, var(--main-red-rgb-015), transparent 50%);
+    }
+
+    .red:nth-child(2n)::before {
+        background-image: linear-gradient(30deg, var(--main-red-rgb-015), transparent 50%);
+    }
+
+    .postcard .postcard__tagbox .yellow.play:hover {
+        background: var(--main-yellow);
+        color: black;
+    }
+
+    .yellow .postcard__title:hover {
+        color: var(--main-yellow);
+    }
+
+    .yellow .postcard__bar {
+        background-color: var(--main-yellow);
+    }
+
+    .yellow::before {
+        background-image: linear-gradient(-30deg,
+                var(--main-yellow-rgb-015),
+                transparent 50%);
+    }
+
+    .yellow:nth-child(2n)::before {
+        background-image: linear-gradient(30deg,
+                var(--main-yellow-rgb-015),
+                transparent 50%);
+    }
+
+    @media screen and (min-width: 769px) {
+        .green::before {
+            background-image: linear-gradient(-80deg,
+                    var(--main-green-rgb-015),
+                    transparent 50%);
+        }
+
+        .green:nth-child(2n)::before {
+            background-image: linear-gradient(80deg,
+                    var(--main-green-rgb-015),
+                    transparent 50%);
+        }
+
+        .blue::before {
+            background-image: linear-gradient(-80deg,
+                    var(--main-blue-rgb-015),
+                    transparent 50%);
+        }
+
+        .blue:nth-child(2n)::before {
+            background-image: linear-gradient(80deg, var(--main-blue-rgb-015), transparent 50%);
+        }
+
+        .red::before {
+            background-image: linear-gradient(-80deg, var(--main-red-rgb-015), transparent 50%);
+        }
+
+        .red:nth-child(2n)::before {
+            background-image: linear-gradient(80deg, var(--main-red-rgb-015), transparent 50%);
+        }
+
+        .yellow::before {
+            background-image: linear-gradient(-80deg,
+                    var(--main-yellow-rgb-015),
+                    transparent 50%);
+        }
+
+        .yellow:nth-child(2n)::before {
+            background-image: linear-gradient(80deg,
+                    var(--main-yellow-rgb-015),
+                    transparent 50%);
+        }
+    }
+
+    .h1.text-center {
+        color: #fff;
+        font-size: 80px;
+        color: #fff;
+        text-align: center;
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+		  from {
+			text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px gray, 0 0 30px #000000, 0 0 40px #000000, 0 0 50px gray, 0 0 60px gray;
+		  }
+		  
+		  to {
+			text-shadow: 0 0 10px #fff, 0 0 20px #000000, 0 0 30px #000000, 0 0 40px gray, 0 0 50px gray, 0 0 70px #000000, 0 0 80px #000000;
+		  }
+		}
+
+    /*Customer Details*/
+
+    #form {
+        display: grid;
+        place-items: center;
+        width: 600px;
+        height: 472px;
+        padding: 25px;
+        background-color: #161616;
+        box-shadow: 0px 15px 60px #7c7c7c;
+        outline: 1px solid gray;
+        border-radius: 10px;
+        margin: 2em;
+    }
+
+    #form-body {
+        position: absolute;
+        top: 50%;
+        right: 25px;
+        left: 25px;
+        width: 230px;
+        margin: -156px auto 0 auto;
+    }
+
+    #welcome-lines {
+        text-align: center;
+        line-height: 1;
+        width: 106%;
+    }
+
+    #welcome-line-1 {
+        color: #7c7c7c;
+        font-weight: 600;
+        font-size: 30px;
+    }
+
+    #welcome-line-2 {
+        color: #ffffff;
+        font-size: 18px;
+        margin-top: 17px;
+    }
+
+    #input-area {
+        margin-top: 40px;
+    }
+
+    .form-inp {
+        padding: 11px 25px;
+        background: transparent;
+        border: 1px solid #e3e3e3;
+        line-height: 1;
+        border-radius: 8px;
+    }
+
+    .form-inp.add {
+        margin-top: 13px;
+    }
+
+    .form-inp:focus {
+        border: 1px solid #7c7c7c;
+    }
+
+    .form-inp:first-child {
+        margin-bottom: 15px;
+    }
+
+    .form-inp input {
+        width: 100%;
+        background: none;
+        font-size: 13.4px;
+        color: #fff;
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .form-inp input:focus {
+        outline: none;
+    }
+
+    #submit-button-cvr {
+        margin-top: 40px;
+    }
+
+    #submit-button {
+        display: block;
+        width: 100%;
+        color: #7c7c7c;
+        background-color: transparent;
+        font-weight: 600;
+        font-size: 14px;
+        margin: 0;
+        padding: 14px 13px 12px 13px;
+        border: 0;
+        outline: 1px solid #7c7c7c;
+        border-radius: 8px;
+        line-height: 1;
+        cursor: pointer;
+        transition: all ease-in-out .3s;
+    }
+
+    #submit-button:hover {
+        transition: all ease-in-out .3s;
+        background-color: #7c7c7c;
+        color: #161616;
+        cursor: pointer;
+    }
+
+    #forgot-pass {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    #forgot-pass a {
+        color: #868686;
+        font-size: 12px;
+        text-decoration: none;
+    }
+
+    #bar {
+        position: absolute;
+        left: 50%;
+        bottom: -50px;
+        width: 28px;
+        height: 8px;
+        margin-left: -33px;
+        background-color: #7c7c7c;
+        border-radius: 10px;
+    }
+
+    #bar:before,
+    #bar:after {
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background-color: #ececec;
+        border-radius: 50%;
+    }
+
+    #bar:before {
+        right: -20px;
+    }
+
+    #bar:after {
+        right: -38px;
+    }
+</style>
+
+{% endblock %}
