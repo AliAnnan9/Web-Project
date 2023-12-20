@@ -3,6 +3,7 @@ from django.views.generic import ListView,DetailView
 from Cars.models import Car 
 from .forms import AppointmentForm
 from .models import Appointment
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home( request):
     return render(request, 'home.html',{})
@@ -11,6 +12,7 @@ class FilmDetailView(DetailView):
     model = Car
     template_name = 'Film.html'
 
+@login_required
 def create_Appointment(request , pk):
     cars = Car.objects.get(id = pk)
     form = AppointmentForm()
